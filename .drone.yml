@@ -11,5 +11,6 @@ steps:
       COVERALLS_TOKEN:
         from_secret: COVERALLS_TOKEN
     commands:
+      - curl ifconfig.me
       - go get github.com/mattn/goveralls
       - goveralls -service drone.io
