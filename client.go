@@ -4,6 +4,8 @@ import (
 	"errors"
 )
 
+const apiVer = "20190715"
+
 type Client struct {
 	URL      string
 	Username string
@@ -12,7 +14,7 @@ type Client struct {
 
 func newClient(url, user, pass string) *Client {
 	return &Client{
-		URL:      url + "/api/20190715",
+		URL:      url + "/api/" + apiVer,
 		Username: user,
 		Password: pass,
 	}

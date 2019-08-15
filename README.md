@@ -1,8 +1,6 @@
-[WIP] mysqlrouter-go
+mysqlrouter-go
 ==============
 client for getting mysql-router information.
-
-under the work in progress.
 
 Usage
 -----
@@ -13,11 +11,23 @@ if err != nil {
 }
 
 routes, err := mr.GetAllRoutes()
-if err != nil {
-    panic(err)
-}
-
-for _, route := range routes.Item {
-    fmt.Printf("name: %s\n", route.Name)
-}
 ```
+
+See [example](example/main.go)
+
+Supported endpoint
+-------------------
+### cluster
+- [ ] /metadata
+- [ ] /metadata/metadata_name/config
+- [ ] /metadata/metadata_name/status
+
+### app
+- [ ] /router/status
+
+### route
+- [x] /routes
+- [x] /routes/router_name/status
+- [x] /routes/router_name/health
+- [x] /routes/router_name/destinations
+- [x] /routes/router_name/connections
