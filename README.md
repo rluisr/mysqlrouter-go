@@ -18,12 +18,12 @@ See [example](example/main.go)
 Supported endpoint
 -------------------
 ### cluster
-- [ ] /metadata
-- [ ] /metadata/metadata_name/config
-- [ ] /metadata/metadata_name/status
+- [x] /metadata
+- [x] /metadata/metadata_name/config
+- [x] /metadata/metadata_name/status
 
 ### app
-- [ ] /router/status
+- [x] /router/status
 
 ### route
 - [x] /routes
