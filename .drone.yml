@@ -1,0 +1,15 @@
+kind: pipeline
+name: default
+
+platform:
+  arch: amd64
+
+steps:
+  - name: test
+    image: golang
+    environment:
+      COVERALLS_TOKEN:
+        from_secret: COVERALLS_TOKEN
+    commands:
+      - go get github.com/mattn/goveralls
+      - goveralls -service drone.io
