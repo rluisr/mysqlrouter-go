@@ -1,5 +1,7 @@
 mysqlrouter-go
 ==============
+[![Build Status](https://cloud.drone.io/api/badges/rluisr/mysqlrouter-go/status.svg)](https://cloud.drone.io/rluisr/mysqlrouter-go)
+
 client for getting mysql-router information.
 
 Usage
