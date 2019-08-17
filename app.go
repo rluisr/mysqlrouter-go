@@ -9,6 +9,7 @@ var (
 	appURL = "/router"
 )
 
+// Router general information of MySQL Router
 type Router struct {
 	ProcessID      int       `json:"processId"`
 	ProductEdition string    `json:"productEdition"`
@@ -17,6 +18,7 @@ type Router struct {
 	Hostname       string    `json:"hostname"`
 }
 
+// GetRouterStatus returns information of MySQL Router
 func (c *Client) GetRouterStatus() (*Router, error) {
 	b, err := c.request(c.URL + appURL + "/status")
 	if err != nil {

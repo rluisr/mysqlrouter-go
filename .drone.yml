@@ -5,12 +5,17 @@ platform:
   arch: amd64
 
 steps:
-  - name: test
+  - name: lint
+    image: golang
+    commands:
+      - go get -u golang.org/x/lint/golint
+      - golint
+
+  - name: test coverage
     image: golang
     environment:
       COVERALLS_TOKEN:
         from_secret: COVERALLS_TOKEN
     commands:
-      - curl ifconfig.me
       - go get github.com/mattn/goveralls
       - goveralls -service drone.io

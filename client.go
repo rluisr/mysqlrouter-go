@@ -6,6 +6,7 @@ import (
 
 const apiVer = "20190715"
 
+// Client holds the configuration for 20190715 version API client.
 type Client struct {
 	URL      string
 	Username string
@@ -20,6 +21,7 @@ func newClient(url, user, pass string) *Client {
 	}
 }
 
+// New creates a new API client.
 func New(url, user, pass string) (*Client, error) {
 	if url == "" || user == "" || pass == "" {
 		return nil, errors.New(errEmptyClientInformation)
