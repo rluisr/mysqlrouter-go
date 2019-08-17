@@ -1,6 +1,7 @@
 mysqlrouter-go
 ==============
 [![Build Status](https://cloud.drone.io/api/badges/rluisr/mysqlrouter-go/status.svg)](https://cloud.drone.io/rluisr/mysqlrouter-go)
+[![Coverage Status](https://coveralls.io/repos/github/rluisr/mysqlrouter-go/badge.svg?branch=test)](https://coveralls.io/github/rluisr/mysqlrouter-go?branch=test)
 
 client for getting mysql-router information.
 
@@ -13,11 +14,10 @@ routes, err := mr.GetAllRoutes()
 
 See [example](example/main.go)
 
-mysqlrouter-test.xzy.pw
+About mysqlrouter-test.xzy.pw
 -----------------------
-I'm providing MySQL Router 8.0.17 for testing.  
-You can access this with basic `luis:luis`.  
-But you can only GET method.
+I provide MySQL Router 8.0.17 for testing.  
+You can access this domain with basic `luis:luis` and you can request only GET method.  
 
 Supported endpoint
 -------------------

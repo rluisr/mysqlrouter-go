@@ -14,7 +14,7 @@ steps:
   - name: test
     image: golang
     commands:
-      - go test -v ./...
+      - go test -v .
 
   - name: coverage
     image: golang
@@ -24,3 +24,8 @@ steps:
     commands:
       - go get github.com/mattn/goveralls
       - goveralls -service drone.io
+    when:
+      branch:
+        - master
+      event:
+        - push
