@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	mr, err := mysqlrouter.New("http://localhost:5901", "luis", "luis")
+	mr, err := mysqlrouter.New("https://mysqlrouter-test.xzy.pw", "luis", "luis")
 	if err != nil {
 		panic(err)
 	}

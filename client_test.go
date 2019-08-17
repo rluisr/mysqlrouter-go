@@ -5,5 +5,5 @@ var (
 )
 
 func setup() {
-	client, _ = New("http://localhost:5901", "luis", "luis")
+	client, _ = New("https://mysqlrouter-test.xzy.pw", "luis", "luis")
 }

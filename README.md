@@ -7,15 +7,17 @@ client for getting mysql-router information.
 Usage
 -----
 ```go
-mr, err := mysqlrouter.New("http://db-router.luis.local:8080", "luis", "luis")
-if err != nil {
-    panic(err)
-}
-
+mr, err := mysqlrouter.New("https://mysqlrouter-test.xzy.pw", "luis", "luis")
 routes, err := mr.GetAllRoutes()
 ```
 
 See [example](example/main.go)
+
+mysqlrouter-test.xzy.pw
+-----------------------
+I'm providing MySQL Router 8.0.17 for testing.  
+You can access this with basic `luis:luis`.  
+But you can only GET method.
 
 Supported endpoint
 -------------------
