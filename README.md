@@ -35,7 +35,7 @@ Supported endpoint
 
 ### route
 - [x] /routes
-- [x] /routes/router_name/status
-- [x] /routes/router_name/health
-- [x] /routes/router_name/destinations
-- [x] /routes/router_name/connections
+- [x] /routes/route_name/status
+- [x] /routes/route_name/health
+- [x] /routes/route_name/destinations
+- [x] /routes/route_name/connections
