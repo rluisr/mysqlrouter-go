@@ -11,7 +11,12 @@ steps:
       - go get -u golang.org/x/lint/golint
       - golint
 
-  - name: test coverage
+  - name: test
+    image: golang
+    commands:
+      - go test -v ./...
+
+  - name: coverage
     image: golang
     environment:
       COVERALLS_TOKEN:
