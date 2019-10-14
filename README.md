@@ -25,7 +25,7 @@ See [example](example/main.go)
 About mysqlrouter-test.xzy.pw
 -----------------------
 I provide MySQL Router 8.0.17 for testing.  
-You can access this domain with basic `luis:luis` and you can request only GET method.  
+You can access this domain with basic `luis:luis` and request only GET method.  
 
 Supported endpoint
 -------------------
