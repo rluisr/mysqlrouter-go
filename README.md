@@ -5,6 +5,10 @@ mysqlrouter-go
 
 client for getting mysql-router information.
 
+Supported version
+-----------------
+- 20190715 (8.0.17, 8.0.18)
+
 Enable HTTP Server and REST API
 -------------------------------
 See [MySQL Router 8.0.17 and the REST API by lefred](https://lefred.be/content/mysqlrouter-8-0-17-and-the-rest-api/).
