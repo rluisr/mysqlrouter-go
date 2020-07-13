@@ -47,7 +47,6 @@ func TestClient_GetRouteDestinations(t *testing.T) {
 func TestClient_GetRouteConnections(t *testing.T) {
 	setup()
 
-	routeConnections, err := client.GetRouteConnections(route)
+	_, err := client.GetRouteConnections(route)
 	assert.NoError(t, err)
-	assert.NotEmpty(t, routeConnections)
 }
