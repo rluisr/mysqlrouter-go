@@ -11,23 +11,25 @@ type Client struct {
 	URL      string
 	Username string
 	Password string
+	SkipTLSVerify bool
 }
 
-func newClient(url, user, pass string) *Client {
+func newClient(url, user, pass string, skipTLSVerify bool) *Client {
 	return &Client{
 		URL:      url + "/api/" + apiVer,
 		Username: user,
 		Password: pass,
+		SkipTLSVerify: skipTLSVerify,
 	}
 }
 
 // New creates a new API client.
-func New(url, user, pass string) (*Client, error) {
-	if url == "" || user == "" || pass == "" {
+func New(url, user, pass string, skipTLSVerify bool) (*Client, error) {
+	if url == ""  {
 		return nil, errors.New(errEmptyClientInformation)
 	}
 
-	client := newClient(url, user, pass)
+	client := newClient(url, user, pass, skipTLSVerify)
 
 	err := client.verifyConnection()
 	if err != nil {

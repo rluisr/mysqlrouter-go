@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	mr, err := mysqlrouter.New("https://mysqlrouter-test.xzy.pw", "luis", "luis")
+	mr, err := mysqlrouter.New("https://mysqlrouter-test.xzy.pw", "luis", "luis", false)
 	if err != nil {
 		panic(err)
 	}
@@ -42,7 +42,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("route connections: %+v\n", routeConnections[0])
+	fmt.Printf("route connections: %+v\n", routeConnections)
 
 	metadatas, err := mr.GetAllMetadata()
 	if err != nil {
