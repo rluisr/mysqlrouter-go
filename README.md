@@ -22,11 +22,6 @@ routes, err := mr.GetAllRoutes()
 
 See [example](example/main.go)
 
-About mysqlrouter-test.xzy.pw
------------------------
-I provide MySQL Router 8.0.21 for testing.  
-You can access this domain with basic `luis:luis` and request only GET method.  
-
 Supported endpoint
 -------------------
 ### cluster
