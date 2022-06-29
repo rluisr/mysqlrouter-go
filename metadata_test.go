@@ -11,7 +11,7 @@ var (
 )
 
 func TestClient_GetAllMetadata(t *testing.T) {
-	setup()
+	setupWithoutTLS()
 
 	metadatas, err := client.GetAllMetadata()
 	assert.NoError(t, err)
@@ -21,7 +21,7 @@ func TestClient_GetAllMetadata(t *testing.T) {
 }
 
 func TestClient_GetMetadataConfig(t *testing.T) {
-	setup()
+	setupWithoutTLS()
 
 	metadataConfig, err := client.GetMetadataConfig(metadata)
 	assert.NoError(t, err)
@@ -29,7 +29,7 @@ func TestClient_GetMetadataConfig(t *testing.T) {
 }
 
 func TestClient_GetMetadataStatus(t *testing.T) {
-	setup()
+	setupWithoutTLS()
 
 	metadataStatus, err := client.GetMetadataStatus(metadata)
 	assert.NoError(t, err)

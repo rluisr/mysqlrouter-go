@@ -1,6 +1,6 @@
 module github.com/rluisr/mysqlrouter-go
 
-go 1.17
+go 1.18
 
 require github.com/stretchr/testify v1.6.1
 

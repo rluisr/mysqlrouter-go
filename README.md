@@ -7,7 +7,7 @@ client for getting mysql-router information.
 
 Supported version
 -----------------
-- 20190715 (8.0.17 - 8.0.27)
+- 20190715 (8.0.17 - 8.0.29)
 
 Enable HTTP Server and REST API
 -------------------------------
@@ -16,14 +16,16 @@ See [MySQL Router 8.0.17 and the REST API by lefred](https://lefred.be/content/m
 Usage
 -----
 ```go
-mr, err := mysqlrouter.New("https://mysqlrouter-test.xzy.pw", "luis", "luis")
-routes, err := mr.GetAllRoutes()
+mysqlrouter.New("http://localhost:8080", "luis", "luis", nil)
 ```
 
-See [example](example/main.go)
+See [example](example/main.go) and [client_test.go](client_test.go)
 
 Supported endpoint
 -------------------
+### server
+- [x] HTTPS with verify
+
 ### cluster
 - [x] /metadata
 - [x] /metadata/metadata_name/config
@@ -38,3 +40,9 @@ Supported endpoint
 - [x] /routes/route_name/health
 - [x] /routes/route_name/destinations
 - [x] /routes/route_name/connections
+
+Developer
+---------
+```shell
+$ cd docker-compose && make local
+```

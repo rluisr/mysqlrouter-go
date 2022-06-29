@@ -2,6 +2,7 @@ package mysqlrouter
 
 import (
 	"errors"
+	"net/http"
 )
 
 const apiVer = "20190715"
@@ -11,25 +12,29 @@ type Client struct {
 	URL      string
 	Username string
 	Password string
-	SkipTLSVerify bool
+	Options  *Options
 }
 
-func newClient(url, user, pass string, skipTLSVerify bool) *Client {
+type Options struct {
+	Transport *http.Transport
+}
+
+func newClient(url, user, pass string, Options *Options) *Client {
 	return &Client{
 		URL:      url + "/api/" + apiVer,
 		Username: user,
 		Password: pass,
-		SkipTLSVerify: skipTLSVerify,
+		Options:  Options,
 	}
 }
 
 // New creates a new API client.
-func New(url, user, pass string, skipTLSVerify bool) (*Client, error) {
-	if url == ""  {
+func New(url, user, pass string, Options *Options) (*Client, error) {
+	if url == "" {
 		return nil, errors.New(errEmptyClientInformation)
 	}
 
-	client := newClient(url, user, pass, skipTLSVerify)
+	client := newClient(url, user, pass, Options)
 
 	err := client.verifyConnection()
 	if err != nil {
