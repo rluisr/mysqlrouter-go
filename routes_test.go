@@ -11,7 +11,7 @@ var (
 )
 
 func TestClient_GetAllRoutes(t *testing.T) {
-	setup()
+	setupWithoutTLS()
 
 	routes, err := client.GetAllRoutes()
 	assert.NoError(t, err)
@@ -21,15 +21,16 @@ func TestClient_GetAllRoutes(t *testing.T) {
 }
 
 func TestClient_GetRouteStatus(t *testing.T) {
-	setup()
+	setupWithoutTLS()
 
-	routeStatus, err := client.GetRouteStatus(route)
+	_, err := client.GetRouteStatus(route)
 	assert.NoError(t, err)
-	assert.NotEmpty(t, routeStatus)
+	// A newborn cluster has no route status.
+	//assert.NotEmpty(t, routeStatus)
 }
 
 func TestClient_GetRouteHealth(t *testing.T) {
-	setup()
+	setupWithoutTLS()
 
 	routeHealth, err := client.GetRouteHealth(route)
 	assert.NoError(t, err)
@@ -37,7 +38,7 @@ func TestClient_GetRouteHealth(t *testing.T) {
 }
 
 func TestClient_GetRouteDestinations(t *testing.T) {
-	setup()
+	setupWithoutTLS()
 
 	routeDestinations, err := client.GetRouteDestinations(route)
 	assert.NoError(t, err)
@@ -45,7 +46,7 @@ func TestClient_GetRouteDestinations(t *testing.T) {
 }
 
 func TestClient_GetRouteConnections(t *testing.T) {
-	setup()
+	setupWithoutTLS()
 
 	_, err := client.GetRouteConnections(route)
 	assert.NoError(t, err)

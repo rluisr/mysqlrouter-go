@@ -7,7 +7,7 @@ import (
 )
 
 func TestClient_GetRouterStatus(t *testing.T) {
-	setup()
+	setupWithoutTLS()
 
 	routerStatus, err := client.GetRouterStatus()
 	assert.NoError(t, err)

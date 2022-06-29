@@ -1,7 +1,6 @@
 package mysqlrouter
 
 import (
-	"crypto/tls"
 	"errors"
 	"fmt"
 	"io/ioutil"
@@ -9,11 +8,13 @@ import (
 )
 
 func (c *Client) request(url string) ([]byte, error) {
-	if c.SkipTLSVerify {
-		http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
-	}
-
 	client := &http.Client{}
+
+	if c.Options != nil {
+		if c.Options.Transport != nil {
+			client.Transport = c.Options.Transport
+		}
+	}
 
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
