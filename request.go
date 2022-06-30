@@ -1,7 +1,6 @@
 package mysqlrouter
 
 import (
-	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -32,7 +31,7 @@ func (c *Client) request(url string) ([]byte, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != 200 {
-		return nil, errors.New(fmt.Sprintf("%s got %d", errStatusCode, resp.StatusCode))
+		return nil, fmt.Errorf("%s got %d", errStatusCode, resp.StatusCode)
 	}
 
 	return ioutil.ReadAll(resp.Body)

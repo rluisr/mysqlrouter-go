@@ -44,5 +44,5 @@ Supported endpoint
 Developer
 ---------
 ```shell
-$ cd docker-compose && make local
+$ cd test && make local
 ```

@@ -4,7 +4,7 @@ set -e
 
 echo "=============================================================================================="
 echo "To check any other containers log,"
-echo "run \"docker-compose up --build --force-recreate --always-recreate-deps --renew-anon-volumes\""
+echo "run \"docker compose up --build --force-recreate --always-recreate-deps --renew-anon-volumes\""
 echo "=============================================================================================="
 
 readonly MAX_TRIES=120

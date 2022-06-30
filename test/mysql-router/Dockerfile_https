@@ -1,0 +1,20 @@
+FROM oraclelinux:7-slim
+
+RUN rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022 \
+    && yum install -y yum install http://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm \
+    && yum install -y mysql-community-client mysql-router-community libpwquality \
+    && yum clean all
+
+COPY mysqlrouter.pwd /mysqlrouter.pwd
+COPY run_https.sh /tmp/run.sh
+COPY certs/localhost.crt /server.crt
+COPY certs/localhost.key /server.key
+
+RUN chmod +x /tmp/run.sh
+
+HEALTHCHECK \
+	CMD mysqladmin --port 6446 --protocol TCP ping 2>&1 | grep Access || exit 1
+
+EXPOSE 8443
+ENTRYPOINT ["/tmp/run.sh"]
+CMD ["mysqlrouter"]

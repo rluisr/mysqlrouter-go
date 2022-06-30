@@ -1,0 +1,2 @@
+--platform ubuntu-latest=lucasalt/act_base:latest
+--container-architecture linux/amd64

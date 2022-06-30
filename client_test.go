@@ -36,15 +36,15 @@ func TestNewClientWithSkipTLSVerify(t *testing.T) {
 
 // TestNewClientWithTLS check a connection with certificates
 func TestNewClientWithTLS(t *testing.T) {
-	certPath, err := filepath.Abs("docker-compose/mysql-router/certs/localhost.crt")
+	certPath, err := filepath.Abs("test/mysql-router/certs/localhost.crt")
 	if err != nil {
 		assert.NoError(t, err)
 	}
-	keyPath, err := filepath.Abs("docker-compose/mysql-router/certs/localhost.key")
+	keyPath, err := filepath.Abs("test/mysql-router/certs/localhost.key")
 	if err != nil {
 		assert.NoError(t, err)
 	}
-	caPath, err := filepath.Abs("docker-compose/mysql-router/certs/localCA.crt")
+	caPath, err := filepath.Abs("test/mysql-router/certs/localCA.crt")
 	if err != nil {
 		assert.NoError(t, err)
 	}
