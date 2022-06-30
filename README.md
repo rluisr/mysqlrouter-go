@@ -1,7 +1,6 @@
 mysqlrouter-go
 ==============
 [![Build Status](https://cloud.drone.io/api/badges/rluisr/mysqlrouter-go/status.svg)](https://cloud.drone.io/rluisr/mysqlrouter-go)
-[![Coverage Status](https://coveralls.io/repos/github/rluisr/mysqlrouter-go/badge.svg?branch=test)](https://coveralls.io/github/rluisr/mysqlrouter-go?branch=test)
 
 client for getting mysql-router information.
 
