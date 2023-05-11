@@ -4,8 +4,8 @@ import (
 	"crypto/tls"
 	"crypto/x509"
 	"github.com/stretchr/testify/assert"
-	"io/ioutil"
 	"net/http"
+	"os"
 	"path/filepath"
 	"testing"
 )
@@ -54,7 +54,7 @@ func TestNewClientWithTLS(t *testing.T) {
 		assert.NoError(t, err)
 	}
 
-	caCert, err := ioutil.ReadFile(caPath)
+	caCert, err := os.ReadFile(caPath)
 	if err != nil {
 		assert.NoError(t, err)
 	}

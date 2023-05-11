@@ -2,7 +2,7 @@ package mysqlrouter
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 )
 
@@ -34,5 +34,5 @@ func (c *Client) request(url string) ([]byte, error) {
 		return nil, fmt.Errorf("%s got %d", errStatusCode, resp.StatusCode)
 	}
 
-	return ioutil.ReadAll(resp.Body)
+	return io.ReadAll(resp.Body)
 }
