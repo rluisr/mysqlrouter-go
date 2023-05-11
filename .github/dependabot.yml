@@ -10,10 +10,4 @@ updates:
     directory: "/"
     registries:
       - github-octocat
-    target-branch: "staging"
-    schedule:
-      interval: daily
-      time: "20:00"
-    open-pull-requests-limit: 10
-    ignore:
-      - dependency-name: "github.com/sendgrid/sendgrid-go"
+    target-branch: "master"
