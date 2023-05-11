@@ -6,7 +6,7 @@ client for getting mysql-router information.
 
 Supported version
 -----------------
-- 20190715 (8.0.17 - 8.0.29)
+- 20190715 (8.0.17 - 8.0.32)
 
 Enable HTTP Server and REST API
 -------------------------------

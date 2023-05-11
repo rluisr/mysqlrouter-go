@@ -2,7 +2,7 @@ package mysqlrouter
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 )
 
@@ -30,9 +30,10 @@ func (c *Client) request(url string) ([]byte, error) {
 	}
 	defer resp.Body.Close()
 
-	if resp.StatusCode != 200 {
+	// We accept InternalServerError because MySQL Router REST API return 500 when route status does not alive. see: https://github.com/rluisr/mysqlrouter_exporter/issues/30#issue-1703518829
+	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusInternalServerError {
 		return nil, fmt.Errorf("%s got %d", errStatusCode, resp.StatusCode)
 	}
 
-	return ioutil.ReadAll(resp.Body)
+	return io.ReadAll(resp.Body)
 }
