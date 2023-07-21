@@ -14,10 +14,12 @@ services:
       - mysql-router-http
       - mysql-router-https
 
+  # why using `latest` tag?
+  # Oracle does not pin the version of mysql-server of linux/amd64 ^^
   mysql-server-1:
     env_file:
       - mysql-server.env
-    image: mysql/mysql-server:${VERSION}
+    image: container-registry.oracle.com/mysql/community-server:latest
     command: [ "mysqld","--server_id=1", "--binlog-transaction-dependency-tracking=WRITESET", "--binlog_checksum=NONE","--gtid_mode=ON","--enforce_gtid_consistency=ON","--log_bin","--log_slave_updates=ON","--master_info_repository=TABLE","--relay_log_info_repository=TABLE","--transaction_write_set_extraction=XXHASH64","--user=mysql","--skip-host-cache","--skip-name-resolve", "--default_authentication_plugin=mysql_native_password" ]
     ports:
       - "3301:3306"
@@ -25,7 +27,7 @@ services:
   mysql-server-2:
     env_file:
       - mysql-server.env
-    image: mysql/mysql-server:${VERSION}
+    image: container-registry.oracle.com/mysql/community-server:latest
     command: [ "mysqld","--server_id=2","--binlog-transaction-dependency-tracking=WRITESET", "--binlog_checksum=NONE","--gtid_mode=ON","--enforce_gtid_consistency=ON","--log_bin","--log_slave_updates=ON","--master_info_repository=TABLE","--relay_log_info_repository=TABLE","--transaction_write_set_extraction=XXHASH64","--user=mysql","--skip-host-cache","--skip-name-resolve", "--default_authentication_plugin=mysql_native_password" ]
     ports:
       - "3302:3306"
@@ -33,7 +35,7 @@ services:
   mysql-server-3:
     env_file:
       - mysql-server.env
-    image: mysql/mysql-server:${VERSION}
+    image: container-registry.oracle.com/mysql/community-server:latest
     command: [ "mysqld","--server_id=3","--binlog-transaction-dependency-tracking=WRITESET", "--binlog_checksum=NONE","--gtid_mode=ON","--enforce_gtid_consistency=ON","--log_bin","--log_slave_updates=ON","--master_info_repository=TABLE","--relay_log_info_repository=TABLE","--transaction_write_set_extraction=XXHASH64","--user=mysql","--skip-host-cache","--skip-name-resolve", "--default_authentication_plugin=mysql_native_password" ]
     ports:
       - "3303:3306"
