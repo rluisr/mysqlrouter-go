@@ -3,7 +3,7 @@
 FROM oraclelinux:7-slim
 
 ARG KEY=https://repo.mysql.com/RPM-GPG-KEY-mysql
-ARG MYSQL_SHELL_PACKAGE_URL="https://dev.mysql.com/get/Downloads/MySQL-Shell/mysql-shell-8.0.29-1.el7.x86_64.rpm"
+ARG MYSQL_SHELL_PACKAGE_URL="https://dev.mysql.com/get/mysql80-community-release-el7-8.noarch.rpm"
 
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
