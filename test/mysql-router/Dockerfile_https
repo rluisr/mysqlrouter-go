@@ -1,7 +1,9 @@
 FROM oraclelinux:7-slim
 
-RUN rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022 \
-    && yum install -y yum install http://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm \
+ARG MYSQL_YUM_REPO_URL
+
+RUN yum install -y $MYSQL_YUM_REPO_URL \
+    && yum-config-manager --enable mysql-innovation-community \
     && yum install -y mysql-community-client mysql-router-community libpwquality \
     && yum clean all
 

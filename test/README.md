@@ -1,1 +1,1 @@
-docker compose up && docker compose rm -fsv
+See [Makefile](Makefile)
