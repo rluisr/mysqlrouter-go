@@ -2,6 +2,7 @@
 set -e
 
 if [ "$1" = 'mysqlsh' ]; then
+    mysqlsh --version
 
     if [[ -z $MYSQL_HOST || -z $MYSQL_PORT || -z $MYSQL_USER || -z $MYSQL_PASSWORD ]]; then
 	    echo "We require all of"
