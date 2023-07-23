@@ -17,24 +17,27 @@ services:
   # why using `latest` tag?
   # Oracle does not pin the version of mysql-server of linux/amd64 ^^
   mysql-server-1:
-    env_file:
-      - mysql-server.env
+    environment:
+      MYSQL_ROOT_PASSWORD: "mysql"
+      MYSQL_ROOT_HOST: "%"
     image: container-registry.oracle.com/mysql/community-server:latest
     command: [ "mysqld","--server_id=1", "--binlog-transaction-dependency-tracking=WRITESET", "--binlog_checksum=NONE","--gtid_mode=ON","--enforce_gtid_consistency=ON","--log_bin","--log_slave_updates=ON","--master_info_repository=TABLE","--relay_log_info_repository=TABLE","--transaction_write_set_extraction=XXHASH64","--user=mysql","--skip-host-cache","--skip-name-resolve", "--default_authentication_plugin=mysql_native_password" ]
     ports:
       - "3301:3306"
 
   mysql-server-2:
-    env_file:
-      - mysql-server.env
+    environment:
+      MYSQL_ROOT_PASSWORD: "mysql"
+      MYSQL_ROOT_HOST: "%"
     image: container-registry.oracle.com/mysql/community-server:latest
     command: [ "mysqld","--server_id=2","--binlog-transaction-dependency-tracking=WRITESET", "--binlog_checksum=NONE","--gtid_mode=ON","--enforce_gtid_consistency=ON","--log_bin","--log_slave_updates=ON","--master_info_repository=TABLE","--relay_log_info_repository=TABLE","--transaction_write_set_extraction=XXHASH64","--user=mysql","--skip-host-cache","--skip-name-resolve", "--default_authentication_plugin=mysql_native_password" ]
     ports:
       - "3302:3306"
 
   mysql-server-3:
-    env_file:
-      - mysql-server.env
+    environment:
+      MYSQL_ROOT_PASSWORD: "mysql"
+      MYSQL_ROOT_HOST: "%"
     image: container-registry.oracle.com/mysql/community-server:latest
     command: [ "mysqld","--server_id=3","--binlog-transaction-dependency-tracking=WRITESET", "--binlog_checksum=NONE","--gtid_mode=ON","--enforce_gtid_consistency=ON","--log_bin","--log_slave_updates=ON","--master_info_repository=TABLE","--relay_log_info_repository=TABLE","--transaction_write_set_extraction=XXHASH64","--user=mysql","--skip-host-cache","--skip-name-resolve", "--default_authentication_plugin=mysql_native_password" ]
     ports:
@@ -44,26 +47,38 @@ services:
     platform: linux/amd64
     build:
       context: ./mysql-shell
+      args:
+        MYSQL_SHELL_PACKAGER_URL: "https://dev.mysql.com/get/Downloads/MySQL-Shell/mysql-shell-8.1.0-1.el7.x86_64.rpm"
       dockerfile: Dockerfile
-    env_file:
-      - mysql-shell.env
+    environment:
+      MYSQL_USER: "root"
+      MYSQL_HOST: "mysql-server-1"
+      MYSQL_PORT: "3306"
+      MYSQL_PASSWORD: "mysql"
+      MYSQLSH_SCRIPT: "/setupCluster.js"
     image: mysqlshell:${VERSION}
     depends_on:
       - mysql-server-1
       - mysql-server-2
       - mysql-server-3
 
-#
-# DO NOT CHANGE APP NAME
-# WE WILL HAVE TO CHANGE CERTIFICATES.
-#
+  #
+  # DO NOT CHANGE APP NAME
+  # WE WILL HAVE TO CHANGE CERTIFICATES.
+  #
   mysql-router-http:
     platform: linux/amd64
     build:
       context: ./mysql-router
+      args:
+        MYSQL_YUM_REPO_URL: https://dev.mysql.com/get/mysql80-community-release-el7-8.noarch.rpm
       dockerfile: Dockerfile_http
-    env_file:
-      - mysql-router.env
+    environment:
+      MYSQL_USER: "root"
+      MYSQL_HOST: "mysql-server-1"
+      MYSQL_PORT: "3306"
+      MYSQL_PASSWORD: mysql
+      MYSQL_INNODB_NUM_MEMBERS: 3
     image: mysqlrouter-http:${VERSION}
     ports:
       - "8080:8080"
@@ -73,17 +88,23 @@ services:
       - mysql-server-3
     restart: on-failure
 
-#
-# DO NOT CHANGE APP NAME
-# WE WILL HAVE TO CHANGE CERTIFICATES.
-#
+  #
+  # DO NOT CHANGE APP NAME
+  # WE WILL HAVE TO CHANGE CERTIFICATES.
+  #
   mysql-router-https:
     platform: linux/amd64
     build:
       context: ./mysql-router
+      args:
+        MYSQL_YUM_REPO_URL: https://dev.mysql.com/get/mysql80-community-release-el7-8.noarch.rpm
       dockerfile: Dockerfile_https
-    env_file:
-      - mysql-router.env
+    environment:
+      MYSQL_USER: "root"
+      MYSQL_HOST: "mysql-server-1"
+      MYSQL_PORT: "3306"
+      MYSQL_PASSWORD: mysql
+      MYSQL_INNODB_NUM_MEMBERS: 3
     image: mysqlrouter-https:${VERSION}
     ports:
       - "8443:8443"

@@ -1,6 +1,6 @@
 FROM oraclelinux:7-slim
 
-ARG MYSQL_SHELL_PACKAGER_URL="https://dev.mysql.com/get/Downloads/MySQL-Shell/mysql-shell-8.1.0-1.el7.x86_64.rpm"
+ARG MYSQL_SHELL_PACKAGER_URL
 
 COPY run.sh /run.sh
 RUN chmod +x /run.sh

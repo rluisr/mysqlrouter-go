@@ -2,6 +2,9 @@
 set -e
 
 if [ "$1" = 'mysqlrouter' ]; then
+
+   mysqlrouter --version
+
     if [[ -z $MYSQL_HOST || -z $MYSQL_PORT || -z $MYSQL_USER || -z $MYSQL_PASSWORD ]]; then
 	    echo "We require all of"
 	    echo "    MYSQL_HOST"
